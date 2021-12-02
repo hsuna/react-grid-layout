@@ -83,9 +83,9 @@ We have created the [React-Grid-Layout Organization](https://github.com/react-gr
 This organization will grow as time goes on, and also contains the dependencies of RGL.
 
 ### Bugfixes
-  - Use `classList` in Firefox onDragOver hack. [#1310](https://github.com/STRML/react-grid-layout/pull/1310)
-  - Fix `scale` property. As `scale` support was added to dependencies, this caused double-compensation for scale, causing the dragged element not to follow the cursor. [#1393](https://github.com/STRML/react-grid-layout/pull/1393)
-  - Fix horizontal compact mode issue where it inadventently would compact the bottom of the grid. This is not useful nor intended. Thanks @s4m3. [#1390](https://github.com/STRML/react-grid-layout/pull/1390)
+  - Use `classList` in Firefox onDragOver hack. [#1310](https://github.com/hsuna/react-grid-layout/pull/1310)
+  - Fix `scale` property. As `scale` support was added to dependencies, this caused double-compensation for scale, causing the dragged element not to follow the cursor. [#1393](https://github.com/hsuna/react-grid-layout/pull/1393)
+  - Fix horizontal compact mode issue where it inadventently would compact the bottom of the grid. This is not useful nor intended. Thanks @s4m3. [#1390](https://github.com/hsuna/react-grid-layout/pull/1390)
   - Fix `onLayoutChange` sometimes not triggering on resize. We weren't cloning the layout item before modifying it. Thanks @xcqwan. [#1289](https://github.com/react-grid-layout/react-grid-layout/pull/1289)
 
 ### Internal Refactors
@@ -96,16 +96,16 @@ This organization will grow as time goes on, and also contains the dependencies 
 ---
 
 ### New Features
-  - You can now customize your resizable handle component as supported by [`react-resizable`](https://github.com/STRML/react-resizable/blob/09fd865c0e1cc570caa8d67e44a2e56172d3d816/examples/ExampleLayout.js#L72). For example:
+  - You can now customize your resizable handle component as supported by [`react-resizable`](https://github.com/hsuna/react-resizable/blob/09fd865c0e1cc570caa8d67e44a2e56172d3d816/examples/ExampleLayout.js#L72). For example:
   ```js
     <ReactGridLayout resizeHandle={<span className="custom-handle custom-handle-se" />} {...props} />
   ````
-  Thanks @typeetfunc [#1303](https://github.com/STRML/react-grid-layout/pull/1303)
+  Thanks @typeetfunc [#1303](https://github.com/hsuna/react-grid-layout/pull/1303)
 
 ### Bugfixes
   - Fix `onDrop` handler not firing on Firefox if you drop over the placeholder.
-    - Thanks @Charles-Lamoureux [#1333](https://github.com/STRML/react-grid-layout/pull/1333)
-  - Various example style fixes [#1283](https://github.com/STRML/react-grid-layout/pull/1283) [#1299](https://github.com/STRML/react-grid-layout/pull/1299)
+    - Thanks @Charles-Lamoureux [#1333](https://github.com/hsuna/react-grid-layout/pull/1333)
+  - Various example style fixes [#1283](https://github.com/hsuna/react-grid-layout/pull/1283) [#1299](https://github.com/hsuna/react-grid-layout/pull/1299)
 
 1.1.1 (Sep 10, 2020)
 ---
@@ -141,21 +141,21 @@ React-Grid-Layout has been in `0.x` status for far too long. With the addition o
   - `onDrop` callback now has a form more consistent with other callbacks.
     - Previous type: `(elemParams: { x: number, y: number, w: number, h: number, e: Event }) => void`
     - New type: `(layout: Layout, item: ?LayoutItem, e: Event) => void`
-    - Thanks @ceberhar [#1169](https://github.com/STRML/react-grid-layout/pull/1169)
+    - Thanks @ceberhar [#1169](https://github.com/hsuna/react-grid-layout/pull/1169)
   - Dropping Node 8 compatibility and testing due to devDep incompatibilities
 
 ### New Features
-  - Add `innerRef: React.Ref<'div'>` prop to expose a ref for the grid layout's outer div. Thanks @paul-sachs [#1176](https://github.com/STRML/react-grid-layout/pull/1176)
-  - Add `isBounded` property to prevent dragging items outside of the grid. Thanks @artembykov [#1248](https://github.com/STRML/react-grid-layout/pull/1248)
+  - Add `innerRef: React.Ref<'div'>` prop to expose a ref for the grid layout's outer div. Thanks @paul-sachs [#1176](https://github.com/hsuna/react-grid-layout/pull/1176)
+  - Add `isBounded` property to prevent dragging items outside of the grid. Thanks @artembykov [#1248](https://github.com/hsuna/react-grid-layout/pull/1248)
 
 ### Bugfixes
-  - Fix grid items stuck using percentages on first render. Thanks @rhbg [#1246](https://github.com/STRML/react-grid-layout/pull/1246)
+  - Fix grid items stuck using percentages on first render. Thanks @rhbg [#1246](https://github.com/hsuna/react-grid-layout/pull/1246)
 
 0.18.3 (Mar 16, 2020)
 ----
 
 ### Bugfixes
-  - Fix `shouldComponentUpdate` interfering with droppability ([#1152](https://github.com/STRML/react-grid-layout/issues/1152))
+  - Fix `shouldComponentUpdate` interfering with droppability ([#1152](https://github.com/hsuna/react-grid-layout/issues/1152))
 
 ### Internal Changes
   - New Enzyme test suite added to prevent regression. If you have time, we could really use more test cases that reflect your use cases!
@@ -165,10 +165,10 @@ React-Grid-Layout has been in `0.x` status for far too long. With the addition o
 
 ### Bugfixes
   - `shouldComponentUpdate`:
-    - A too-aggressive implementation of `shouldComponentUpdate` was shipped in 0.18.0-0.18.1 ([#1123](https://github.com/STRML/react-grid-layout/pull/1123)), which did not compare the `children` object. While this works well in many simple implementations of RGL, it breaks in more complex applications.
+    - A too-aggressive implementation of `shouldComponentUpdate` was shipped in 0.18.0-0.18.1 ([#1123](https://github.com/hsuna/react-grid-layout/pull/1123)), which did not compare the `children` object. While this works well in many simple implementations of RGL, it breaks in more complex applications.
     - Reference equality of `props.children` and `nextProps.children` is now added to `<ReactGridLayout>` and `<GridItem>`. If you wish to take advantage of the performance improvements from the `shouldComponentUpdate` work, memoize your children.
     - A section has been added to the [README](/README.md#Performance) explaining how this works.
-    - Fixed [#1150](https://github.com/STRML/react-grid-layout/issues/1150), [#1151](https://github.com/STRML/react-grid-layout/issues/1151).
+    - Fixed [#1150](https://github.com/hsuna/react-grid-layout/issues/1150), [#1151](https://github.com/hsuna/react-grid-layout/issues/1151).
 
 0.18.1 (Feb 25, 2020)
 ----
@@ -179,40 +179,40 @@ This release contains typedef changes only.
   - Flow types:
     - Make Props to `<ReactGridLayout>` and `<ResponsiveReactGridLayout>` exact.
     - Fix loss of props refinement when passing through `WidthProvider`.
-    - Fix Flow errors as surfaced in [#1138](https://github.com/STRML/react-grid-layout/pull/1138).
+    - Fix Flow errors as surfaced in [#1138](https://github.com/hsuna/react-grid-layout/pull/1138).
     - Modify examples to use types so that the above type error can't resurface
 
 0.18.0 (Feb 25, 2020)
 ----
 
-Thanks to all of our maintainers for this big release. 0.18.0 contains a large number of bugfixes that users have been asking for. Please read the full list so you know what to expect. Some of the biggest improvements include fixing changes of `isResizable`/`isDraggable` without a remount ([#892](https://github.com/STRML/react-grid-layout/pull/892)), fixes to prop changes on `ResponsiveReactGridLayout` ([#1090](https://github.com/STRML/react-grid-layout/pull/1090)), `shouldComponentUpdate` improvements for speed ([#1123](https://github.com/STRML/react-grid-layout/pull/1123)), improvements to droppability ([#1127](https://github.com/STRML/react-grid-layout/pull/1127)), and much more.
+Thanks to all of our maintainers for this big release. 0.18.0 contains a large number of bugfixes that users have been asking for. Please read the full list so you know what to expect. Some of the biggest improvements include fixing changes of `isResizable`/`isDraggable` without a remount ([#892](https://github.com/hsuna/react-grid-layout/pull/892)), fixes to prop changes on `ResponsiveReactGridLayout` ([#1090](https://github.com/hsuna/react-grid-layout/pull/1090)), `shouldComponentUpdate` improvements for speed ([#1123](https://github.com/hsuna/react-grid-layout/pull/1123)), improvements to droppability ([#1127](https://github.com/hsuna/react-grid-layout/pull/1127)), and much more.
 
 ### (Potentially) Breaking Changes
 
-- You can now locally set `isDraggable`/`isResizable` on a `static` item and it will have that property. This could be useful, but be sure to check your layouts if you use `static`. Relates to [#1060](https://github.com/STRML/react-grid-layout/pull/1060).
-- `shouldComponentUpdate` is now implemented on major components to improve render speed while you manipulate the layout. In our testing there are no issues. If you encounter one, please open an issue asap and we'll get it fixed. See [#1123](https://github.com/STRML/react-grid-layout/pull/1123).
+- You can now locally set `isDraggable`/`isResizable` on a `static` item and it will have that property. This could be useful, but be sure to check your layouts if you use `static`. Relates to [#1060](https://github.com/hsuna/react-grid-layout/pull/1060).
+- `shouldComponentUpdate` is now implemented on major components to improve render speed while you manipulate the layout. In our testing there are no issues. If you encounter one, please open an issue asap and we'll get it fixed. See [#1123](https://github.com/hsuna/react-grid-layout/pull/1123).
 
 ### New Features
 
-- You can now manipulate `isDraggable`/`isResizable` without the child component remounting. We do this by always rendering the child `<Resizable>` and `<Draggable>` wrappers, optionally in a `disabled` state. This feature has been heavily requested. [#892](https://github.com/STRML/react-grid-layout/pull/892)
-- The event is now passed as `e` on the `onDrop` callback. [#1065](https://github.com/STRML/react-grid-layout/pull/1065)
-- Pass `transformScale` to `Resizable`. [#1075](https://github.com/STRML/react-grid-layout/pull/1075)
+- You can now manipulate `isDraggable`/`isResizable` without the child component remounting. We do this by always rendering the child `<Resizable>` and `<Draggable>` wrappers, optionally in a `disabled` state. This feature has been heavily requested. [#892](https://github.com/hsuna/react-grid-layout/pull/892)
+- The event is now passed as `e` on the `onDrop` callback. [#1065](https://github.com/hsuna/react-grid-layout/pull/1065)
+- Pass `transformScale` to `Resizable`. [#1075](https://github.com/hsuna/react-grid-layout/pull/1075)
 
 ### Bugfixes
 
-- Fix handling of width changes in `ResponsiveReactGridLayout`. [#1090](https://github.com/STRML/react-grid-layout/pull/1090)
-  - Fixes ignored changes of breakpoints and columns. See also [issue #1083](https://github.com/STRML/react-grid-layout/issues/1083).
-- Forbid layout change on click without drag. [#1044](https://github.com/STRML/react-grid-layout/pull/1044)
-- Do not mutate `layouts` prop. [#1064](https://github.com/STRML/react-grid-layout/pull/1064)
-- Ensure locally set `isDraggable`/`isResizable` on a `GridItem` overrides the global setting on the layout. [#1060](https://github.com/STRML/react-grid-layout/pull/1060)
-- Avoid additional element jumping when an item is dropped. [#1127](https://github.com/STRML/react-grid-layout/issues/1127)
-- Don't use `String#includes` for Firefox test. [#1096](https://github.com/STRML/react-grid-layout/pull/1096)
+- Fix handling of width changes in `ResponsiveReactGridLayout`. [#1090](https://github.com/hsuna/react-grid-layout/pull/1090)
+  - Fixes ignored changes of breakpoints and columns. See also [issue #1083](https://github.com/hsuna/react-grid-layout/issues/1083).
+- Forbid layout change on click without drag. [#1044](https://github.com/hsuna/react-grid-layout/pull/1044)
+- Do not mutate `layouts` prop. [#1064](https://github.com/hsuna/react-grid-layout/pull/1064)
+- Ensure locally set `isDraggable`/`isResizable` on a `GridItem` overrides the global setting on the layout. [#1060](https://github.com/hsuna/react-grid-layout/pull/1060)
+- Avoid additional element jumping when an item is dropped. [#1127](https://github.com/hsuna/react-grid-layout/issues/1127)
+- Don't use `String#includes` for Firefox test. [#1096](https://github.com/hsuna/react-grid-layout/pull/1096)
 
 ### Internal Refactors
 
-- Added `shouldComponentUpdate` to major elements for speed. Significant [performance improvements](https://github.com/STRML/react-grid-layout/pull/1032#issuecomment-541604763) while dragging. Started in [#1032](https://github.com/STRML/react-grid-layout/pull/1032) and finished in [#1123](https://github.com/STRML/react-grid-layout/pull/1123).
-  - A [fun trick for the curious](https://github.com/STRML/react-grid-layout/blob/44e200067b3640c3230f5511e8624a7c629d2f9a/lib/fastRGLPropsEqual.js).
-- Internal refactor of dropping capability. It is now more predictable and uses similar unit labels (`left`, `top`) to other features. [#1128](https://github.com/STRML/react-grid-layout/issues/1128)
+- Added `shouldComponentUpdate` to major elements for speed. Significant [performance improvements](https://github.com/hsuna/react-grid-layout/pull/1032#issuecomment-541604763) while dragging. Started in [#1032](https://github.com/hsuna/react-grid-layout/pull/1032) and finished in [#1123](https://github.com/hsuna/react-grid-layout/pull/1123).
+  - A [fun trick for the curious](https://github.com/hsuna/react-grid-layout/blob/44e200067b3640c3230f5511e8624a7c629d2f9a/lib/fastRGLPropsEqual.js).
+- Internal refactor of dropping capability. It is now more predictable and uses similar unit labels (`left`, `top`) to other features. [#1128](https://github.com/hsuna/react-grid-layout/issues/1128)
 - Upgrade devDependencies.
 - Remove ESPower from test suite (not useful with Jest).
 
@@ -222,42 +222,42 @@ Thanks to all of our maintainers for this big release. 0.18.0 contains a large n
 
 ### Bugfixes
 
-- Surround `navigator` check in `try/catch` to avoid problems with mocked navigators [#1057](https://github.com/STRML/react-grid-layout/pull/1054)
-- TransformScale is not applied properly while dragging an element [#1046](https://github.com/STRML/react-grid-layout/pull/1054)
+- Surround `navigator` check in `try/catch` to avoid problems with mocked navigators [#1057](https://github.com/hsuna/react-grid-layout/pull/1054)
+- TransformScale is not applied properly while dragging an element [#1046](https://github.com/hsuna/react-grid-layout/pull/1054)
 
 0.17.0 (Oct 24, 2019)
 ----
 
-It's been 18 months since the last release, and this is a pretty large one! For references on the items below, see https://github.com/STRML/react-grid-layout/milestone/1?closed=1.
+It's been 18 months since the last release, and this is a pretty large one! For references on the items below, see https://github.com/hsuna/react-grid-layout/milestone/1?closed=1.
 
 Thanks to @daynin and @n1ghtmare for taking an active role in maintaining RGL, and for giving it a much-needed shot in the arm, and thanks to the rest of our contributors.
 
 ### New Features
 
-- Added ability to drag items into the grid from outside. [#980](https://github.com/STRML/react-grid-layout/pull/980). See [the example](https://strml.github.io/react-grid-layout/examples/15-drag-from-outside.html).
-  - This is especially exciting as it opens up new "widget toolbox" use cases such as [Example 14](https://strml.github.io/react-grid-layout/examples/14-toolbox.html) with more intuitive interaction. Thanks @daynin.
-- `transformScale` prop [#987](https://github.com/STRML/react-grid-layout/pull/987)
-- `<ResponsiveReactGridLayout>` now supports margin-per-breakpoint [#1016](https://github.com/STRML/react-grid-layout/pull/1016)
+- Added ability to drag items into the grid from outside. [#980](https://github.com/hsuna/react-grid-layout/pull/980). See [the example](https://hsuna.github.io/react-grid-layout/examples/15-drag-from-outside.html).
+  - This is especially exciting as it opens up new "widget toolbox" use cases such as [Example 14](https://hsuna.github.io/react-grid-layout/examples/14-toolbox.html) with more intuitive interaction. Thanks @daynin.
+- `transformScale` prop [#987](https://github.com/hsuna/react-grid-layout/pull/987)
+- `<ResponsiveReactGridLayout>` now supports margin-per-breakpoint [#1016](https://github.com/hsuna/react-grid-layout/pull/1016)
 
 
 ### Bugfixes
 
-- `onWidthChange` only called on breakpoint changes [#770](https://github.com/STRML/react-grid-layout/pull/770)
-- Various movement bugs when compaction is off [#766](https://github.com/STRML/react-grid-layout/pull/766)
-- Don't fire `onDragStop` if an item is only clicked, not dragged [#1023](https://github.com/STRML/react-grid-layout/pull/1023)
-- Fix infinite loop when dragging over a static element. [#1019](https://github.com/STRML/react-grid-layout/pull/1019)
+- `onWidthChange` only called on breakpoint changes [#770](https://github.com/hsuna/react-grid-layout/pull/770)
+- Various movement bugs when compaction is off [#766](https://github.com/hsuna/react-grid-layout/pull/766)
+- Don't fire `onDragStop` if an item is only clicked, not dragged [#1023](https://github.com/hsuna/react-grid-layout/pull/1023)
+- Fix infinite loop when dragging over a static element. [#1019](https://github.com/hsuna/react-grid-layout/pull/1019)
 
 ### Internal Refactors
 
 - Both `react-draggable` and `react-resizable` dependencies are now React 16.9 compatible, as is now `react-grid-layout`.
-  - [RGL PR #990](https://github.com/STRML/react-grid-layout/pull/990)
-  - [react-resizable](https://github.com/STRML/react-resizable/pull/112/commits/541dee69b8e45d91a533855609472b481634edee)
+  - [RGL PR #990](https://github.com/hsuna/react-grid-layout/pull/990)
+  - [react-resizable](https://github.com/hsuna/react-resizable/pull/112/commits/541dee69b8e45d91a533855609472b481634edee)
   - [react-draggable](https://github.com/mzabriskie/react-draggable/commit/fea778c8e89db2a4e1a35e563b65634f8146e7e4)
-- Webpack 4 [#907](https://github.com/STRML/react-grid-layout/pull/907)
-- Babel 7 [#1013](https://github.com/STRML/react-grid-layout/pull/1013)
-- Flow 0.110 [#995](https://github.com/STRML/react-grid-layout/pull/995)
-- Jest [#774](https://github.com/STRML/react-grid-layout/pull/774)
-- Various build simplifications [#773](https://github.com/STRML/react-grid-layout/pull/773)
+- Webpack 4 [#907](https://github.com/hsuna/react-grid-layout/pull/907)
+- Babel 7 [#1013](https://github.com/hsuna/react-grid-layout/pull/1013)
+- Flow 0.110 [#995](https://github.com/hsuna/react-grid-layout/pull/995)
+- Jest [#774](https://github.com/hsuna/react-grid-layout/pull/774)
+- Various build simplifications [#773](https://github.com/hsuna/react-grid-layout/pull/773)
 - Various PR bots - thanks @daynin
 
 0.16.6 (Mar 8, 2018)
@@ -297,7 +297,7 @@ Thanks to @daynin and @n1ghtmare for taking an active role in maintaining RGL, a
 ----
 
 - Fix `onLayoutChange` not firing properly due to regression introduced in 0.16.1
-  - Ref: https://github.com/STRML/react-grid-layout/issues/683
+  - Ref: https://github.com/hsuna/react-grid-layout/issues/683
 - Simpler resize corner CSS (thanks @TrySound)
 - Reformat code with Prettier & simplify lint configs (thanks @TrySound)
 
@@ -338,7 +338,7 @@ Thanks to @daynin and @n1ghtmare for taking an active role in maintaining RGL, a
 ----
 
 - Fixed a dragging bug when the grid container is scrollable. Thanks @chultquist.
-  - Ref: https://github.com/STRML/react-grid-layout/pull/555
+  - Ref: https://github.com/hsuna/react-grid-layout/pull/555
 
 0.14.6 (Apr 19, 2017)
 ----
@@ -366,7 +366,7 @@ Thanks to @daynin and @n1ghtmare for taking an active role in maintaining RGL, a
 
 #### Fixes:
 
-- Reverted #499; `msTransform` is indeed correct. See [discussion](https://github.com/STRML/react-grid-layout/pull/499#issuecomment-281703069).
+- Reverted #499; `msTransform` is indeed correct. See [discussion](https://github.com/hsuna/react-grid-layout/pull/499#issuecomment-281703069).
 
 0.14.2 (Feb 22, 2017)
 ----
@@ -404,7 +404,7 @@ Thanks to @daynin and @n1ghtmare for taking an active role in maintaining RGL, a
 #### Fixes:
 
 - Fixed sorting of layout items, which could be different in IE if two items have the same x & y coordinate.
-  - See [#369](https://github.com/STRML/react-grid-layout/issues/369).
+  - See [#369](https://github.com/hsuna/react-grid-layout/issues/369).
 
 0.13.8 (Oct 13, 2016)
 -----
@@ -412,7 +412,7 @@ Thanks to @daynin and @n1ghtmare for taking an active role in maintaining RGL, a
 #### Fixes:
 
 - Fixed breakage introduced in `0.13.7` when items are added without a layout or `data-grid` property.
-  - See [#368](https://github.com/STRML/react-grid-layout/issues/368).
+  - See [#368](https://github.com/hsuna/react-grid-layout/issues/368).
 
 0.13.7 (Oct 3, 2016)
 -----
@@ -445,7 +445,7 @@ Thanks to @daynin and @n1ghtmare for taking an active role in maintaining RGL, a
 
 - Fixed potential call to `ReactDOM.findDOMNode(this)` after unmount of `WidthProvider`.
 - Fixed an issue where layout items using `data-grid` could rearrange on mount depending on how they were ordered.
-  - See [#342](https://github.com/STRML/react-grid-layout/pull/342) for reference.
+  - See [#342](https://github.com/hsuna/react-grid-layout/pull/342) for reference.
 
 0.13.3 (Aug 31, 2016)
 -----
