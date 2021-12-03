@@ -175,7 +175,7 @@ export default class ResponsiveReactGridLayout extends React.Component<
   state: State = this.generateInitialState();
 
   generateInitialState(): State {
-    const { width, breakpoints, layouts, cols } = this.props;
+    const { width, breakpoints, layouts, cols, margin } = this.props;
     const breakpoint = getBreakpointFromWidth(breakpoints, width);
     const colNo = getColsFromBreakpoint(breakpoint, cols);
     // verticalCompact compatibility, now deprecated
@@ -189,7 +189,8 @@ export default class ResponsiveReactGridLayout extends React.Component<
       breakpoint,
       breakpoint,
       colNo,
-      compactType
+      compactType,
+      margin
     );
 
     return {
@@ -215,7 +216,8 @@ export default class ResponsiveReactGridLayout extends React.Component<
         breakpoint,
         breakpoint,
         cols,
-        nextProps.compactType
+        nextProps.compactType,
+        nextProps.margin
       );
       return { layout: newLayout, layouts: nextProps.layouts };
     }
@@ -256,7 +258,7 @@ export default class ResponsiveReactGridLayout extends React.Component<
     const lastBreakpoint = this.state.breakpoint;
     const newCols: number = getColsFromBreakpoint(newBreakpoint, cols);
     const newLayouts = { ...layouts };
-
+    const margin = getIndentationValue(this.props.margin, newBreakpoint);
     // Breakpoint change
     if (
       lastBreakpoint !== newBreakpoint ||
@@ -274,7 +276,8 @@ export default class ResponsiveReactGridLayout extends React.Component<
         newBreakpoint,
         lastBreakpoint,
         newCols,
-        compactType
+        compactType,
+        margin
       );
 
       // This adds missing items.
@@ -283,7 +286,8 @@ export default class ResponsiveReactGridLayout extends React.Component<
         this.props.children,
         newCols,
         compactType,
-        this.props.allowOverlap
+        this.props.allowOverlap,
+        this.props.margin
       );
 
       // Store the new layout.
@@ -300,7 +304,6 @@ export default class ResponsiveReactGridLayout extends React.Component<
       });
     }
 
-    const margin = getIndentationValue(this.props.margin, newBreakpoint);
     const containerPadding = getIndentationValue(
       this.props.containerPadding,
       newBreakpoint

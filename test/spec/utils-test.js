@@ -107,7 +107,8 @@ describe("moveElement", () => {
         cols
       ),
       compactType,
-      cols
+      cols, 
+      [0, 0]
     );
   }
 
@@ -408,7 +409,7 @@ describe("moveElement", () => {
 describe("compact vertical", () => {
   it("Removes empty vertical space above item", () => {
     const layout = [{ i: "1", x: 0, y: 1, w: 1, h: 1 }];
-    expect(compact(layout, "vertical", 10)).toEqual([
+    expect(compact(layout, "vertical", 10, [0, 0])).toEqual([
       { i: "1", x: 0, y: 0, w: 1, h: 1, moved: false, static: false }
     ]);
   });
@@ -418,7 +419,7 @@ describe("compact vertical", () => {
       { x: 0, y: 0, w: 1, h: 5, i: "1" },
       { x: 0, y: 1, w: 1, h: 1, i: "2" }
     ];
-    expect(compact(layout, "vertical", 10)).toEqual([
+    expect(compact(layout, "vertical", 10, [0, 0])).toEqual([
       { x: 0, y: 0, w: 1, h: 5, i: "1", moved: false, static: false },
       { x: 0, y: 5, w: 1, h: 1, i: "2", moved: false, static: false }
     ]);
@@ -433,7 +434,7 @@ describe("compact vertical", () => {
       { x: 5, y: 3, w: 1, h: 1, i: "5", static: true }
     ];
 
-    expect(compact(layout, "vertical", 10)).toEqual([
+    expect(compact(layout, "vertical", 10, [0, 0])).toEqual([
       { x: 0, y: 0, w: 2, h: 5, i: "1", moved: false, static: false },
       { x: 0, y: 5, w: 10, h: 1, i: "2", moved: false, static: false },
       { x: 5, y: 6, w: 1, h: 1, i: "3", moved: false, static: false },
@@ -447,7 +448,7 @@ describe("compact vertical", () => {
       { x: 0, y: 0, w: 2, h: 5, i: "1" },
       { x: 0, y: 0, w: 10, h: 1, i: "2" }
     ];
-    const out = compact(layout, "vertical", 10);
+    const out = compact(layout, "vertical", 10, [0, 0]);
     layout.forEach(item => {
       expect(out.includes(item)).toEqual(false);
     });
@@ -457,7 +458,7 @@ describe("compact vertical", () => {
 describe("compact horizontal", () => {
   it("compact horizontal should remove empty horizontal space to left of item", () => {
     const layout = [{ x: 5, y: 5, w: 1, h: 1, i: "1" }];
-    expect(compact(layout, "horizontal", 10)).toEqual([
+    expect(compact(layout, "horizontal", 10, [0, 0])).toEqual([
       { x: 0, y: 5, w: 1, h: 1, i: "1", moved: false, static: false }
     ]);
   });
@@ -467,7 +468,7 @@ describe("compact horizontal", () => {
       { y: 0, x: 0, h: 1, w: 5, i: "1" },
       { y: 0, x: 1, h: 1, w: 1, i: "2" }
     ];
-    expect(compact(layout, "horizontal", 10)).toEqual([
+    expect(compact(layout, "horizontal", 10, [0, 0])).toEqual([
       { y: 0, x: 0, h: 1, w: 5, i: "1", moved: false, static: false },
       { y: 0, x: 5, h: 1, w: 1, i: "2", moved: false, static: false }
     ]);
@@ -481,7 +482,7 @@ describe("compact horizontal", () => {
       { y: 5, x: 2, h: 1, w: 1, i: "4" },
       { y: 5, x: 2, h: 1, w: 1, i: "5", static: true }
     ];
-    expect(compact(layout, "horizontal", 10)).toEqual([
+    expect(compact(layout, "horizontal", 10, [0, 0])).toEqual([
       { y: 0, x: 0, h: 2, w: 5, i: "1", moved: false, static: false },
       { y: 1, x: 5, h: 10, w: 1, i: "2", moved: false, static: false },
       { y: 5, x: 6, h: 1, w: 1, i: "3", moved: false, static: false },

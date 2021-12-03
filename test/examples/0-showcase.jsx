@@ -25,7 +25,7 @@ export default class ShowcaseLayout extends React.Component<Props, State> {
     className: "layout",
     rowHeight: 1,
     onLayoutChange: function() {},
-    cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
+    cols: { lg: 1200, md: 1200, sm: 600, xs: 400, xxs: 200 },
   };
 
   state: State = {
@@ -107,7 +107,7 @@ export default class ShowcaseLayout extends React.Component<Props, State> {
         </button>
         <ResponsiveReactGridLayout
           {...this.props}
-          margin={[10, 10]}
+          margin={[0, 0]}
           containerPadding={[0, 0]}
           layouts={this.state.layouts}
           onBreakpointChange={this.onBreakpointChange}

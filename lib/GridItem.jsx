@@ -605,7 +605,6 @@ export default class GridItem extends React.Component<Props, State> {
     h = clamp(h, minH, maxH);
 
     this.setState({ resizing: handlerName === "onResizeStop" ? null : size });
-
     handler.call(this, i, w, h, { e, node, size });
   }
 
