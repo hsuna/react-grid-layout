@@ -23,7 +23,7 @@ type State = {|
 export default class ShowcaseLayout extends React.Component<Props, State> {
   static defaultProps: Props = {
     className: "layout",
-    rowHeight: 30,
+    rowHeight: 1,
     onLayoutChange: function() {},
     cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
   };
@@ -107,6 +107,8 @@ export default class ShowcaseLayout extends React.Component<Props, State> {
         </button>
         <ResponsiveReactGridLayout
           {...this.props}
+          margin={[10, 10]}
+          containerPadding={[0, 0]}
           layouts={this.state.layouts}
           onBreakpointChange={this.onBreakpointChange}
           onLayoutChange={this.onLayoutChange}
@@ -127,15 +129,15 @@ export default class ShowcaseLayout extends React.Component<Props, State> {
 }
 
 function generateLayout() {
-  return _.map(_.range(0, 25), function(item, i) {
-    var y = Math.ceil(Math.random() * 4) + 1;
+  return _.map(_.range(0, 3), function(item, i) {
+    // var y = Math.ceil(Math.random() * 4) + 1;
     return {
-      x: Math.round(Math.random() * 5) * 2,
-      y: Math.floor(i / 6) * y,
-      w: 2,
-      h: y,
+      x: 0,
+      y: i * 30,
+      w: 30,
+      h: 2 * 30 + i * 10,
       i: i.toString(),
-      static: Math.random() < 0.05
+      // static: Math.random() < 0.05
     };
   });
 }
