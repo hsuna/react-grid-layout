@@ -7,6 +7,7 @@ body {
 .react-grid-layout {
   background: #eee;
   margin-top: 10px;
+  width: 1200px;
 }
 .layoutJSON {
   background: #ddd;
