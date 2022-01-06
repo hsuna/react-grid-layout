@@ -20,6 +20,7 @@ import clsx from "clsx";
 import type { Element as ReactElement, Node as ReactNode } from "react";
 
 import type {
+  CompactType,
   ReactDraggableCallbackData,
   GridDragEvent,
   GridResizeEvent,
@@ -60,6 +61,7 @@ type Props = {
   isResizable: boolean,
   isBounded: boolean,
   static?: boolean,
+  fixed?: boolean | CompactType,
   useCSSTransforms?: boolean,
   usePercentages?: boolean,
   transformScale: number,
@@ -175,6 +177,7 @@ export default class GridItem extends React.Component<Props, State> {
     isResizable: PropTypes.bool.isRequired,
     isBounded: PropTypes.bool.isRequired,
     static: PropTypes.bool,
+    fixed: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 
     // Use CSS transforms instead of top/left
     useCSSTransforms: PropTypes.bool.isRequired,
@@ -475,6 +478,12 @@ export default class GridItem extends React.Component<Props, State> {
 
     const { isBounded, i, w, h, containerWidth } = this.props;
     const positionParams = this.getPositionParams();
+
+    if(this.props.fixed === 'horizontal') {
+      top = this.props.y;
+    } else if(this.props.fixed === 'vertical') {
+      left = this.props.x;
+    }
 
     // Boundary calculations; keeps items within the grid
     if (isBounded) {

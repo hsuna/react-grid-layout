@@ -129,7 +129,7 @@ export default class ShowcaseLayout extends React.Component<Props, State> {
 }
 
 function generateLayout() {
-  return _.map(_.range(0, 3), function(item, i) {
+  return _.map(_.range(0, 4), function(item, i) {
     // var y = Math.ceil(Math.random() * 4) + 1;
     return {
       x: 0,
@@ -137,6 +137,7 @@ function generateLayout() {
       w: 30,
       h: 2 * 30 + i * 10,
       i: i.toString(),
+      fixed: i == 2 ? 'horizontal' : '',
       // static: Math.random() < 0.05
     };
   });

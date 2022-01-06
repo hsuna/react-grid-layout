@@ -115,7 +115,8 @@ export default class ReactGridLayout extends React.Component<Props, State> {
     onResize: noop,
     onResizeStop: noop,
     onDrop: noop,
-    onDropDragOver: noop
+    onDropDragOver: noop,
+    onHeightChange: noop,
   };
 
   state: State = {
@@ -224,14 +225,11 @@ export default class ReactGridLayout extends React.Component<Props, State> {
     if (!this.props.autoSize) return;
     const nbRow = bottom(this.state.layout);
     const containerPaddingY = this.props.containerPadding
-      ? this.props.containerPadding[1]
-      : this.props.margin[1];
-    return (
-      nbRow * this.props.rowHeight +
-      (nbRow - 1) * this.props.margin[1] +
-      containerPaddingY * 2 +
-      "px"
-    );
+    ? this.props.containerPadding[1]
+    : this.props.margin[1];
+    const height = nbRow * this.props.rowHeight + (nbRow - 1) * this.props.margin[1] + containerPaddingY * 2;
+    this.onHeightChange(height);
+    return `${height}px`;
   }
 
   /**
@@ -612,6 +610,7 @@ export default class ReactGridLayout extends React.Component<Props, State> {
         maxH={l.maxH}
         maxW={l.maxW}
         static={l.static}
+        fixed={l.fixed}
         droppingPosition={isDroppingItem ? droppingPosition : undefined}
         resizeHandles={resizeHandlesOptions}
         resizeHandle={resizeHandle}
