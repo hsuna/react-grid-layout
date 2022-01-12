@@ -88,6 +88,7 @@ export default class ReactGridLayout extends React.Component<Props, State> {
     draggableCancel: "",
     containerPadding: null,
     rowHeight: 150,
+    dropHeight: 0,
     maxRows: Infinity, // infinite vertical growth
     layout: [],
     margin: [10, 10],
@@ -227,7 +228,7 @@ export default class ReactGridLayout extends React.Component<Props, State> {
     const containerPaddingY = this.props.containerPadding
     ? this.props.containerPadding[1]
     : this.props.margin[1];
-    const height = nbRow * this.props.rowHeight + (nbRow - 1) * this.props.margin[1] + containerPaddingY * 2;
+    const height = this.props.dropHeight + nbRow * this.props.rowHeight + (nbRow - 1) * this.props.margin[1] + containerPaddingY * 2;
     this.props.onHeightChange(height);
     return `${height}px`;
   }

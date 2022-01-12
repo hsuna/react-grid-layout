@@ -659,7 +659,8 @@ export default class GridItem extends React.Component<Props, State> {
       style: {
         ...this.props.style,
         ...child.props.style,
-        ...this.createStyle(pos)
+        ...this.createStyle(pos),
+        zIndex: this.props.fixed ? 2: '',
       }
     });
 
